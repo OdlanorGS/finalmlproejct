@@ -15,21 +15,6 @@ df = pd.DataFrame(data)
 st.write(df)
 visitor = st.slider('Your visitors', min_value=0, max_value=200)  # Returns the value selected by the user
 
-
-st.write(df['visitor'].describe())
-
-# Add Successful column
-df['Successful'] = df['visitor'].apply(lambda x: 'Yes' if x >= 60 else 'No')
-
-# Display DataFrame in Streamlit
-st.dataframe(df)
-
-# Filter DataFrame
-success_df = df[df['Successful'] == 'Yes']
-
-# Display filtered DataFrame in Streamlit
-st.dataframe(success_df)
-
 from sklearn import datasets
 
 # Load the iris dataset
@@ -45,3 +30,37 @@ if st.button('Show me?'):  # Returns True if the user clicks the button
     st.write('Here it is')# Show general information about the dataset
     st.text(df.info())
     st.write(df.describe())
+
+
+import pandas as pd
+from sklearn import datasets
+import matplotlib.pyplot as plt
+import streamlit as st
+
+# Load the iris dataset
+iris = datasets.load_iris()
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+
+# Display the DataFrame in Streamlit
+st.dataframe(df)
+
+# Show general information about the dataset
+st.text(df.info())
+
+# Show statistical information about the dataset
+st.write(df.describe())
+
+# Select a feature to display histogram
+feature = st.selectbox('Select a feature', df.columns)
+
+# Plot histogram
+fig, ax = plt.subplots()
+ax.hist(df[feature], bins=20)
+
+# Set the title and labels
+ax.set_title(f'Histogram of {feature}')
+ax.set_xlabel(feature)
+ax.set_ylabel('Frequency')
+
+# Display the plot
+st.pyplot(fig)
