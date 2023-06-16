@@ -1,3 +1,4 @@
+python -m ensurepip
 pip install matplotlib
 
 import streamlit as st
