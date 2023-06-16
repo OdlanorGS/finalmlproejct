@@ -14,12 +14,7 @@ df = pd.DataFrame(data)
 
 st.write(df)
 visitor = st.slider('Your visitors', min_value=0, max_value=200)  # Returns the value selected by the user
-if st.button('Show me?'):  # Returns True if the user clicks the button
-    st.write('HEre it is')
-show_df = st.checkbox('Show DataFrame')  # Returns True if the user checks the box, False otherwise
-if show_df:
-    st.write(df)
-st.dataframe(df)
+
 
 st.write(df['visitor'].describe())
 
@@ -34,3 +29,19 @@ success_df = df[df['Successful'] == 'Yes']
 
 # Display filtered DataFrame in Streamlit
 st.dataframe(success_df)
+
+from sklearn import datasets
+
+# Load the iris dataset
+iris = datasets.load_iris()
+df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+
+# Display the DataFrame in Streamlit
+show_df = st.checkbox('Show DataFrame')  # Returns True if the user checks the box, False otherwise
+if show_df:
+    st.dataframe(df)
+
+if st.button('Show me?'):  # Returns True if the user clicks the button
+    st.write('Here it is')# Show general information about the dataset
+    st.text(df.info())
+    st.write(df.describe())
