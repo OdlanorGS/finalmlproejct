@@ -1,10 +1,7 @@
-python get-pip.py
-pip install matplotlib
 
 import streamlit as st
 import pandas as pd
 from sklearn import datasets
-import matplotlib.pyplot as plt
 import streamlit as st
 import pandas as pd
 import seaborn as sns
@@ -79,13 +76,11 @@ st.pyplot(fig)
 
 # Plotting a histogram
 st.subheader('Histogram: Sepal Length')
-plt.figure(figsize=(10,6))
 sns.histplot(data=df, x='sepal length (cm)', kde=True)
 st.pyplot(plt.clf())
 
 # Plotting a scatter plot
 st.subheader('Scatter plot: Sepal Length vs Sepal Width')
-plt.figure(figsize=(10,6))
 sns.scatterplot(data=df, x='sepal length (cm)', y='sepal width (cm)', hue=iris.target)
 st.pyplot(plt.clf())
 
